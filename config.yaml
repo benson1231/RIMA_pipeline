@@ -29,41 +29,41 @@ pre_treated: false        # Option: true or false.
 
 samples:
   SRR8281218:
-    - /mnt/RIMA/data/SRR8281218_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281218_2.fastq.gz
+    - ./data/SRR8281218_1.fastq.gz
+    - ./data/SRR8281218_2.fastq.gz
   SRR8281219:
-    - /mnt/RIMA/data/SRR8281219_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281219_2.fastq.gz
+    - ./data/SRR8281219_1.fastq.gz
+    - ./data/SRR8281219_2.fastq.gz
   SRR8281226:
-    - /mnt/RIMA/data/SRR8281226_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281226_2.fastq.gz
+    - ./data/SRR8281226_1.fastq.gz
+    - ./data/SRR8281226_2.fastq.gz
   SRR8281236:
-    - /mnt/RIMA/data/SRR8281236_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281236_2.fastq.gz
+    - ./data/SRR8281236_1.fastq.gz
+    - ./data/SRR8281236_2.fastq.gz
   SRR8281230:
-    - /mnt/RIMA/data/SRR8281230_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281230_2.fastq.gz
+    - ./data/SRR8281230_1.fastq.gz
+    - ./data/SRR8281230_2.fastq.gz
   SRR8281233:
-    - /mnt/RIMA/data/SRR8281233_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281233_2.fastq.gz
+    - ./data/SRR8281233_1.fastq.gz
+    - ./data/SRR8281233_2.fastq.gz
   SRR8281244:
-    - /mnt/RIMA/data/SRR8281244_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281244_2.fastq.gz
+    - ./data/SRR8281244_1.fastq.gz
+    - ./data/SRR8281244_2.fastq.gz
   SRR8281245:
-    - /mnt/RIMA/data/SRR8281245_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281245_2.fastq.gz
+    - ./data/SRR8281245_1.fastq.gz
+    - ./data/SRR8281245_2.fastq.gz
   SRR8281243:
-    - /mnt/RIMA/data/SRR8281243_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281243_2.fastq.gz
+    - ./data/SRR8281243_1.fastq.gz
+    - ./data/SRR8281243_2.fastq.gz
   SRR8281251:
-    - /mnt/RIMA/data/SRR8281251_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281251_2.fastq.gz
+    - ./data/SRR8281251_1.fastq.gz
+    - ./data/SRR8281251_2.fastq.gz
   SRR8281238:
-    - /mnt/RIMA/data/SRR8281238_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281238_2.fastq.gz
+    - ./data/SRR8281238_1.fastq.gz
+    - ./data/SRR8281238_2.fastq.gz
   SRR8281250:
-    - /mnt/RIMA/data/SRR8281250_1.fastq.gz
-    - /mnt/RIMA/data/SRR8281250_2.fastq.gz
+    - ./data/SRR8281250_1.fastq.gz
+    - ./data/SRR8281250_2.fastq.gz
 
 ############################################################
 #                    Neoantigen testing                    #
