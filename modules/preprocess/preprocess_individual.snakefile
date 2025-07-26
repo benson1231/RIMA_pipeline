@@ -208,7 +208,7 @@ rule Downsampling_HouseKeeping:
     benchmark:
         "benchmarks/rseqc/{sample}.downsampling_housekeeping.benchmark"
     conda:
-        "../../envs/stat_perl_r.yml"
+        "../../envs/rnaseq.yml"
     shell:
         "bedtools intersect -a {input.bam} -b {params.housekeeping_bed} > {output.downsampling_hp_bam} && "
         "samtools index {output.downsampling_hp_bam} > {output.Downsampling_hp_bai}"
