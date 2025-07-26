@@ -1,7 +1,7 @@
 > This repo is adapted from the official RIMA repo: https://github.com/liulab-dfci/RIMA_pipeline.
 
 ```bash
-docker build -t rima:latest .
+time snakemake -p -s RIMA.snakefile -j 16
 ```
 
 ## RIMA tutorial:  
