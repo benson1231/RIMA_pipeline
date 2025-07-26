@@ -125,8 +125,10 @@ rule salmon_matrix:
       tx2gene = 'ref_files/tximport/tx2gene.csv',
       outpath = 'analysis/salmon/',
       path = "set +eu;source activate %s" % config['stat_root']
-      
+    
     message: "Merge Salmon gene quantification together for all samples "
+    conda:
+      "../../envs/stat_perl_r.yml"
     shell:
       "{params.path}; Rscript src/preprocess/merge_tpm.R --input {params.args} --meta {input.metasheet} \
       --type salmon --tx2gene {params.tx2gene} --outpath {params.outpath}"

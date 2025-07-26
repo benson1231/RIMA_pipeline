@@ -207,6 +207,8 @@ rule Downsampling_HouseKeeping:
         "logs/rseqc/{sample}.downsampling_housekeeping.log"
     benchmark:
         "benchmarks/rseqc/{sample}.downsampling_housekeeping.benchmark"
+    conda:
+        "../../envs/stat_perl_r.yml"
     shell:
         "bedtools intersect -a {input.bam} -b {params.housekeeping_bed} > {output.downsampling_hp_bam} && "
         "samtools index {output.downsampling_hp_bam} > {output.Downsampling_hp_bai}"
@@ -322,6 +324,7 @@ rule salmon_quantification:
     message: "salmon: from bam to sf "
     benchmark:
         "benchmarks/salmon/{sample}.salmon.benchmark"
+    conda: "../../envs/rnaseq.yml"
     shell:
         "salmon quant -t {params.index} -l A -a {input} -o {params.output_path} "
         "-p {threads} "

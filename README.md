@@ -1,7 +1,8 @@
 > This repo is adapted from the official RIMA repo: https://github.com/liulab-dfci/RIMA_pipeline.
 
 ```bash
-time snakemake -p -s RIMA.snakefile -j 16
+snakemake -p -j 16 --use-conda
+snakemake -p -j 16 --rerun-incomplete --use-conda
 ```
 
 ## RIMA tutorial:  
