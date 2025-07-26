@@ -92,9 +92,9 @@ rule star_align:
     benchmark:
         "benchmarks/star/{sample}.star_align.benchmark"
     conda:
-        "../envs/star_env.yml"
+        "../../envs/star_env.yml"
     shell:
-        "STAR --runThreadN 64 --genomeDir {config[star_index]} "
+        "STAR --runThreadN 16 --genomeDir {config[star_index]} "
         "--outReadsUnmapped None "
         "--chimSegmentMin 12 "
         "--chimJunctionOverhangMin 12 "
@@ -136,7 +136,7 @@ rule index_bam:
     benchmark:
         "benchmarks/star/{sample}.index.benchmark"
     conda:
-        "../envs/star_env.yml"
+        "../../envs/star_env.yml"
     shell:
         "samtools index {input} > {output}"
 
@@ -151,7 +151,7 @@ rule align_bam_stat:
     benchmark:
         "benchmarks/star/{sample}_bam_stat.benchmark"
     conda:
-        "../envs/star_env.yml"
+        "../../envs/star_env.yml"
     shell:
         "samtools stats {input.bam}| grep ^SN | cut -f 2- > {output}"
 
@@ -184,7 +184,7 @@ rule bam_downsampling:
     params:
         prefix = "analysis/star/{sample}",
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../envs/rseqc_env.yml"
+    conda: "../../envs/rseqc_env.yml"
     shell:
         """size=$(python -c "print(open('{input.stat_tmp}','r').readlines()[0].replace('\\n',''))") && """
         """chmod +x src/preprocess/downsampling.sh && """
@@ -231,7 +231,7 @@ rule tin_score:
         min_coverage = "10" ,
         sample_size = "100" ,
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../envs/rseqc_env.yml"
+    conda: "../../envs/rseqc_env.yml"
     shell:
         "{params.path}; tin.py"
         " --input={input.bam}"
@@ -257,7 +257,7 @@ rule read_distrib_qc:
     params:
         bed_ref = rseqc_ref,
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../envs/rseqc_env.yml"
+    conda: "../../envs/rseqc_env.yml"
     shell:
         "{params.path}; read_distribution.py"
         " --input-file={input.bam}"
@@ -281,7 +281,7 @@ rule gene_body_cvg_qc:
         bed_ref = rseqc_ref,
         prefix = "analysis/rseqc/gene_body_cvg/{sample}/{sample}",
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../envs/rseqc_env.yml"
+    conda: "../../envs/rseqc_env.yml"
     shell:
         "{params.path}; geneBody_coverage.py -i {input.bam} -r {params.bed_ref}"
         " -f png -o {params.prefix}"
@@ -301,7 +301,7 @@ rule junction_saturation:
     params:
         prefix = "analysis/rseqc/junction_saturation/{sample}/{sample}",
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../envs/rseqc_env.yml"
+    conda: "../../envs/rseqc_env.yml"
     shell:
         "{params.path}; junction_saturation.py -i {input.bam} -r {config[bed_path]} -o {params.prefix}"
 

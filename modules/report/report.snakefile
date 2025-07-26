@@ -33,7 +33,7 @@ rule QC_Check:
         path="set +eu;source activate %s" % config['stat_root'],
     log:
         "logs/multiqc/QC_check.log"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
         "{params.path}; Rscript src/multiqc/QC_check.R -m {params.meta_file} -s {input.star} -d {input.distr} -t {input.tin} -o {params.prefix}"
 

@@ -53,7 +53,7 @@ rule ImmuneDeconv_infiltration:
         "Running immunedeconv on the expression data"
     benchmark:
         "benchmarks/immune_infiltration/{design}_{batch}_deconv.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
         "{params.path}; Rscript src/immune_infiltration/immune_infiltration.R -e {input} -t {config[cancer_type]} -p {params.perm} -q {params.qn} \
                 -a {params.absl} -m {params.abs_method} -o {params.out_dir}"
@@ -82,7 +82,7 @@ rule ImmuneDeconv_plot:
         "Running immunedeconv plot"
     benchmark:
         "benchmarks/immune_infiltration/{design}_{batch}_deconv_plot.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     params:
         meta = config["metasheet"],
         inputdir = "analysis/immune_infiltration/{design}_{batch}_",

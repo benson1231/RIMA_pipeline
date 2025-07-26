@@ -117,7 +117,7 @@ rule pvacseq_plot:
         multiqc = " files/multiqc/neoantigen/",
         meta = config['metasheet'],
         condition = config['designs']
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
         """cat {input} | sed '1 !{{/Sample/d;}}' > {output.merged_filter} """  
         """ && {params.path}; Rscript src/pvacseq/pvacseq_plot.R --input {output.merged_filter} --outdir {params.outpath} --meta {params.meta} --multiqc {params.multiqc} --condition {params.condition}"""     

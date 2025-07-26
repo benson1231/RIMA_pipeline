@@ -1,0 +1,11 @@
+name: star_env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - star=2.6.1d           # 你原規則內使用 2.6.1d，也可使用新版2.7.10b（建議）
+  - samtools=1.15         # 支援 index, sort, stats
+  - zlib=1.2.11           # 壓縮解壓縮功能
+  - coreutils             # shell 基本命令集
+  - perl                  # 若部分 script 用 Perl

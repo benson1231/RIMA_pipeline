@@ -38,7 +38,7 @@ rule merge_starfusion:
       "Merging fusion results"
     benchmark:
       "benchmarks/fusion/merge_{design}_fusion.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     params:
       meta = config['metasheet']
     shell:
@@ -56,7 +56,7 @@ rule preprocess_prada:
       "Preprocessing prada input file"
     benchmark:
       "benchmarks/fusion/{design}_preprocess_prada.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     params:
       outdir = "analysis/fusion/{design}_",
       path = "set +eu;source activate %s" % config['stat_root'],
@@ -80,7 +80,7 @@ rule run_prada:
       "Running pyprada"
     benchmark:
       "benchmarks/fusion/{design}_pyprada.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     params:
       outdir = "analysis/fusion",
       config = "static/fusion/prada_config.txt",
@@ -108,7 +108,7 @@ rule fusion_plot:
       "Running fusion plotting"
     benchmark:
       "benchmarks/fusion/{design}_fusion_plot.benchmark"     
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     params:
       outdir = "analysis/fusion/",
       meta = config["metasheet"], 

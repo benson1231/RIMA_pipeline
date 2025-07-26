@@ -38,7 +38,7 @@ rule microbiome_plot:
       "Running Microbiota plot"
     benchmark:
       "benchmarks/centrifuge/{design}_centrifuge_merge.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
       "cat {input} |  sed '1 !{{/sample/d;}}' > {output.merged_file}"
       " && {params.path}; Rscript src/microbiome/mic_plot.R --input {output.merged_file} \

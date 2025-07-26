@@ -38,7 +38,7 @@ rule centrifuge_microbiota:
     benchmark:
         "benchmarks/microbiome/{sample}.microbiome.benchmark"
     threads: _microbiome_threads     
-    conda: "../envs/centrifuge_env.yml"
+    conda: "../../envs/centrifuge_env.yml"
     shell:
         """{params.path}; centrifuge -x {params.centrifuge_index} -p {threads}  --host-taxids 9606 -1 {input[0]} -2 {input[1]} -S {output.classfication} --report-file {output.report} """
         """ && gzip {output.classfication} """

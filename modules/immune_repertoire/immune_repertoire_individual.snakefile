@@ -88,7 +88,7 @@ rule ss_bcr_process:
       out_dir = "analysis/trust4/{sample}/{sample}",
       sampleid = "{sample}",
       path= "set +eu;source activate %s" % config['stat_root'],
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
       "{params.path}; Rscript src/immune_repertoire/trust4_bcr_process.R --cdr3 {input.report} \
       --sampleid {params.sampleid} --stat {input.stat} --outdir {params.out_dir} "
@@ -111,7 +111,7 @@ rule ss_tcr_process:
       out_dir = "analysis/trust4/{sample}/{sample}",
       sampleid = "{sample}",
       path= "set +eu;source activate %s" % config['stat_root'],
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
       "{params.path}; Rscript src/immune_repertoire/trust4_tcr_process.R --cdr3 {input.report} \
       --sampleid {params.sampleid} --stat {input.stat} --outdir {params.out_dir} "

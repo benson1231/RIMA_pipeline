@@ -1,5 +1,9 @@
 > This repo is adapted from the official RIMA repo: https://github.com/liulab-dfci/RIMA_pipeline.
 
+```bash
+docker build -t rima:latest .
+```
+
 ## RIMA tutorial:  
 Please find our detail tutorial at https://liulab-dfci.github.io/RIMA/.
 

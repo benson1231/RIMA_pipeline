@@ -33,7 +33,7 @@ rule STAR_fusion:
     message: "Running STAR fusion on {wildcards.sample}"
     benchmark:
         "analysis/fusion/{sample}/{sample}.star_fusion.benchmark.txt"
-    conda: "../envs/fusion_env.yml"
+    conda: "../../envs/fusion_env.yml"
     shell:
         "STAR-Fusion --chimeric_junction {input} --genome_lib_dir {config[star_fusion_index]} --output_dir {params.prefix} "
         " && mv analysis/fusion/{wildcards.sample}/star-fusion.fusion_predictions.tsv {output.res}"

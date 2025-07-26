@@ -97,7 +97,7 @@ rule immune_response_plot:
         design = design,
         path="set +eu;source activate %s" % config['stat_root']
     conda:
-        "../envs/stat_perl_r.yml"
+        "../../envs/stat_perl_r.yml"
     shell:
         "{params.path}; Rscript src/immune_response/tide_plot.R --input {input.score} \
         --design {params.design} --expression {input.expr} --cc {params.cancer} --outdir {params.outpath}"
@@ -115,7 +115,7 @@ rule merge_msisensor:
     log:
     	"analysis/variant/{design}_variant_missensor.log"
     conda: 
-    	"../envs/stat_perl_r.yml"
+    	"../../envs/stat_perl_r.yml"
     params:
     	outpath = "analysis/msisensor/",
     	filelist = lambda wildcards, input: ','.join(str(i) for i in list({input.files})[0]),
@@ -139,7 +139,7 @@ rule immune_comparison_plot:
         "Running immune response ploting"
     benchmark:
         "benchmarks/immune_response/{design}_compare.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     params:
         outpath = "analysis/TIDE/",
         condition = design,

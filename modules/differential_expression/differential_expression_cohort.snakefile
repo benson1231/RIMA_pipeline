@@ -62,7 +62,7 @@ rule deseq2_differential_genes:
         "Running DESeq2 on the samples"
     benchmark:
         "benchmarks/deseq2/{design}.{treatment}.{control}.deseq2.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
     	"{params.path}; Rscript src/differentialexpr/DESeq2.R --input {params.filelist} --type salmon \
         --batch {params.batch} --meta {params.meta} --tx2gene {params.tx_annot} \
@@ -87,7 +87,7 @@ rule volcano_plot:
         "Running Volcano plot on the DESeq2 result"
     benchmark:
         "benchmarks/deseq2/{design}_{treatment}_vs_{control}.deseq2.volcano.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
         "{params.path}; Rscript src/differentialexpr/volcano_plot.R --deseq2_mat {input} \
         --treatment {params.treatment} --control {params.control} --condition {params.condition} \
@@ -125,7 +125,7 @@ rule gsea_plot:
         "Running GSEA on the samples"
     benchmark:
         "benchmarks/gsea/{design}_{treatment}_vs_{control}.gsea.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
         "{params.path}; Rscript src/differentialexpr/gsea.R --deseq2_mat {input} \
         --pcut {params.gsea_pcut} --minsize {params.gsea_minsize} --npermutation {params.gsea_permutation}\
@@ -156,7 +156,7 @@ rule ssgsea:
         "Running single sample gene set enrichment analysis"
     benchmark:
         "benchmarks/ssgsea/{design}_{treatment}_vs_{control}_ssgsea.benchmark"
-    conda: "../envs/stat_perl_r.yml"
+    conda: "../../envs/stat_perl_r.yml"
     shell:
         "{params.path}; Rscript src/differentialexpr/ssgsea.R -e {input} -f {params.gmt} \
         --treatment {params.treatment} --control {params.control} --condition {params.condition}\

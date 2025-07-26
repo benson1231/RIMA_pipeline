@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  rima:
+    build: .
+    image: rima-env:latest
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    tty: true
