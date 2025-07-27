@@ -1,0 +1,7 @@
+name: fusion_env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - star-fusion

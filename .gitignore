@@ -1,0 +1,9 @@
+.*
+!.gitignore
+data/
+analysis/
+logs/
+benchmarks/
+ref.tar.gz
+ref_files/
+log.txt

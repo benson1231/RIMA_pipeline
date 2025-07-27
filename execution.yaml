@@ -9,10 +9,10 @@ preprocess_cohort: true
 ##Make sure to run individual and cohort of each module to get all the results.
 
 ##Individual runs
-mutation_individual: false
-immune_response_individual: false
-immune_repertoire_individual: false
-microbiome_individual: false
+mutation_individual: false   # fails for some reason
+immune_response_individual: false   # OK
+immune_repertoire_individual: false    # fails for some reason
+microbiome_individual: false  # fails for some reason
 neoantigen_individual: false
 
 
