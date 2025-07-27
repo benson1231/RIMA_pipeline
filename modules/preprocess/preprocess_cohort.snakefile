@@ -49,7 +49,6 @@ rule STAR_matrix:
       "Generating STAR report"
     benchmark:
       "benchmarks/star/generate_STAR_report.benchmark"
-    conda: "../../envs/stat_perl_r.yml"
     params:
       log_files = lambda wildcards, input: merge_sep_inputs({input.star_log_files}),
       path="set +eu;source activate %s" % config['stat_root'],
@@ -70,7 +69,6 @@ rule tin_summary:
       "benchmarks/rseqc/tin_score/tin_score_summary.benchmark"
     params:
       path="set +eu;source activate %s" % config['stat_root'],
-    conda: "../../envs/stat_perl_r.yml"
     shell:
       """cat {input} | sed '1 !{{/Bam_file/d;}}' >{output.score}"""
 
@@ -85,7 +83,6 @@ rule read_distrib_qc_matrix:
       "logs/rseqc/read_distrib/read_distrib_qc_matrix.log"
     benchmark:
       "benchmarks/rseqc/read_distrib/read_distrib_qc_matrix.benchmark"
-    conda: "../../envs/stat_perl_r.yml"
     params:
       file_list_with_flag = lambda wildcards, input: merge_sep_inputs({input.read_distrib_files}),
       path="set +eu;source activate %s" % config['stat_root'],
@@ -103,10 +100,9 @@ rule plot_gene_body_cvg:
       "benchmarks/rseqc/gene_body_cvg/plot_gene_body_cvg.benchmark"
     params:
       path="set +eu;source activate %s" % config['stat_root'],
-    conda: "../../envs/stat_perl_r.yml"
     shell:
-      "{params.path};perl src/preprocess/plot_gene_body_cvg.pl --rfile {output.rscript} --curves_png {output.png_curves}"
-      
+      "{params.path};perl src/preprocess/plot_gene_body_cvg.pl"
+      " --rfile {output.rscript} --curves_png {output.png_curves}"
       " {input.samples_list} && {params.path}; Rscript {output.rscript}"
       
 
@@ -127,8 +123,6 @@ rule salmon_matrix:
       path = "set +eu;source activate %s" % config['stat_root']
       
     message: "Merge Salmon gene quantification together for all samples "
-    conda:
-      "../../envs/stat_perl_r.yml"
     shell:
       "{params.path}; Rscript src/preprocess/merge_tpm.R --input {params.args} --meta {input.metasheet} \
       --type salmon --tx2gene {params.tx2gene} --outpath {params.outpath}"
@@ -154,7 +148,6 @@ rule batch_removal:
         rename = "analysis/batchremoval/tpm.genesymbol.batchremoved.csv"
     log:
         "logs/batchremoval/{design}_{covariates}_batch_removal.log"
-    conda: "../../envs/stat_perl_r.yml"
     shell:
         "{params.path}; Rscript src/preprocess/batch_removal.R -e {input} -c {params.covariates} \
         -d {params.design} -m {params.meta} -b {output.before} -a {output.after} \
@@ -178,7 +171,6 @@ rule pca_sample_clustering:
         path="set +eu;source activate %s" % config['stat_root'],
         covariates = config["batch"],
         design = config["design"]
-    conda: "../../envs/stat_perl_r.yml"
     shell:
         "{params.path}; Rscript src/preprocess/pca.R -b {input.before_batch} -a {input.after_batch} -m {params.meta_info}  -c {params.covariates} \
                 -g {params.design} -i {output.before_pca} -j {output.after_pca}"

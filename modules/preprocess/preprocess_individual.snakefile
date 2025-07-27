@@ -136,7 +136,7 @@ rule index_bam:
     benchmark:
         "benchmarks/star/{sample}.index.benchmark"
     conda:
-        "../../envs/star_env.yml"
+        "../../envs/tools.yml"
     shell:
         "samtools index {input} > {output}"
 
@@ -151,7 +151,7 @@ rule align_bam_stat:
     benchmark:
         "benchmarks/star/{sample}_bam_stat.benchmark"
     conda:
-        "../../envs/star_env.yml"
+        "../../envs/tools.yml"  
     shell:
         "samtools stats {input.bam}| grep ^SN | cut -f 2- > {output}"
 
@@ -184,7 +184,8 @@ rule bam_downsampling:
     params:
         prefix = "analysis/star/{sample}",
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../../envs/rseqc_env.yml"
+    conda:
+        "../../envs/tools.yml"  
     shell:
         """size=$(python -c "print(open('{input.stat_tmp}','r').readlines()[0].replace('\\n',''))") && """
         """chmod +x src/preprocess/downsampling.sh && """
@@ -208,7 +209,7 @@ rule Downsampling_HouseKeeping:
     benchmark:
         "benchmarks/rseqc/{sample}.downsampling_housekeeping.benchmark"
     conda:
-        "../../envs/rnaseq.yml"
+        "../../envs/tools.yml"    
     shell:
         "bedtools intersect -a {input.bam} -b {params.housekeeping_bed} > {output.downsampling_hp_bam} && "
         "samtools index {output.downsampling_hp_bam} > {output.Downsampling_hp_bai}"
@@ -233,7 +234,8 @@ rule tin_score:
         min_coverage = "10" ,
         sample_size = "100" ,
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../../envs/rseqc_env.yml"
+    conda:
+        "../../envs/rseqc_env.yml"
     shell:
         "{params.path}; tin.py"
         " --input={input.bam}"
@@ -257,9 +259,10 @@ rule read_distrib_qc:
     benchmark:
         "benchmarks/rseqc/read_distrib/{sample}.read_distrib_qc_matrix.benchmark"
     params:
-        bed_ref = rseqc_ref,
+        bed_ref = config["rseqc_ref"],
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../../envs/rseqc_env.yml"
+    conda:
+        "../../envs/rseqc_env.yml"
     shell:
         "{params.path}; read_distribution.py"
         " --input-file={input.bam}"
@@ -283,7 +286,8 @@ rule gene_body_cvg_qc:
         bed_ref = rseqc_ref,
         prefix = "analysis/rseqc/gene_body_cvg/{sample}/{sample}",
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../../envs/rseqc_env.yml"
+    conda:
+        "../../envs/rseqc_env.yml"
     shell:
         "{params.path}; geneBody_coverage.py -i {input.bam} -r {params.bed_ref}"
         " -f png -o {params.prefix}"
@@ -303,7 +307,8 @@ rule junction_saturation:
     params:
         prefix = "analysis/rseqc/junction_saturation/{sample}/{sample}",
         path="set +eu;source activate %s" % config['rseqc_root'],
-    conda: "../../envs/rseqc_env.yml"
+    conda:
+        "../../envs/rseqc_env.yml"
     shell:
         "{params.path}; junction_saturation.py -i {input.bam} -r {config[bed_path]} -o {params.prefix}"
 
@@ -324,7 +329,8 @@ rule salmon_quantification:
     message: "salmon: from bam to sf "
     benchmark:
         "benchmarks/salmon/{sample}.salmon.benchmark"
-    conda: "../../envs/rnaseq.yml"
+    conda:
+        "../../envs/tools.yml"
     shell:
         "salmon quant -t {params.index} -l A -a {input} -o {params.output_path} "
         "-p {threads} "

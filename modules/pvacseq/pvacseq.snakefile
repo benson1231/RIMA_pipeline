@@ -57,7 +57,6 @@ rule neoantigen_annotate_expression:
         path="set +eu;source activate %s" % config['pvacseq_root']
     benchmark:
         "benchmarks/pvacseq/{sample}.neoantigen_vep_annotate.benchmark"
-    # conda: "../envs/pvacseq_env.yml"
     shell:
         """tr ',' '\t' < {input.expression} | awk '{{if($1 != "Gene_ID") gsub(/\.[0-9]+/,"",$1)}}1' OFS='\t' > {params.tmp} """
         """ && {params.path}; vcf-expression-annotator {input.vcf} {params.tmp} custom transcript --id-column Gene_ID --expression-column {params.sample_name} -s {params.sample_name} -o {output}"""
@@ -88,7 +87,6 @@ rule neoantigen_pvacseq:
         "logs/pvacseq/{sample}.neoantigen_pvacseq.log"
     benchmark:
         "benchmarks/pvacseq/{sample}.neoantigen_pvacseq.benchmark"
-    # conda: "../envs/pvacseq_env.yml"
     shell:
         """{params.path}; pvacseq run {input.vcf} {params.tumor} {params.HLA} {params.callers} {params.output_dir} -e {params.epitope_lengths} -t {threads}  --iedb-install-directory {params.iedb} 2> {log} || true """
         """ && touch {output.main} """   ### to avoid there is no output from this run for some samples
@@ -117,7 +115,6 @@ rule pvacseq_plot:
         multiqc = " files/multiqc/neoantigen/",
         meta = config['metasheet'],
         condition = config['designs']
-    conda: "../../envs/stat_perl_r.yml"
     shell:
         """cat {input} | sed '1 !{{/Sample/d;}}' > {output.merged_filter} """  
         """ && {params.path}; Rscript src/pvacseq/pvacseq_plot.R --input {output.merged_filter} --outdir {params.outpath} --meta {params.meta} --multiqc {params.multiqc} --condition {params.condition}"""     

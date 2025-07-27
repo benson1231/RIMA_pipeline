@@ -1,0 +1,10 @@
+name: tools
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - samtools=1.9
+  - bedtools
+  - salmon
+  - rseqc=4.0.0

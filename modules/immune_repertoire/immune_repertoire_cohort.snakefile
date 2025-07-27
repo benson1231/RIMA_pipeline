@@ -50,7 +50,6 @@ rule merge_bcr_process:
       "benchmarks/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr.benchmark"
     log:
       "logs/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr.log"
-    conda: "../../envs/stat_perl_r.yml"
     params:
       meta= config["metasheet"],
       outdir="analysis/trust4/",
@@ -74,7 +73,6 @@ rule merge_tcr_process:
       "benchmarks/trust4/{design}_{treatment}_vs_{control}_trust4_merge_tcr.benchmark"
     log:
       "logs/trust4/{design}_{treatment}_vs_{control}_trust4_merge_tcr.log"
-    conda: "../../envs/stat_perl_r.yml"
     params:
       meta= config["metasheet"],
       outdir="analysis/trust4/",
@@ -99,7 +97,6 @@ rule merge_bcr_clonality:
       "benchmarks/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr_clonality.benchmark"
     log:
       "logs/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr_clonality.log"
-    conda: "../../envs/stat_perl_r.yml"
     params:
       meta= config["metasheet"],
       outdir="analysis/trust4/",
@@ -122,7 +119,6 @@ rule merge_tcr_clonality:
       "benchmarks/trust4/{design}_{treatment}_vs_{control}_trust4_merge_tcr_clonality.benchmark"
     log:
       "logs/trust4/{design}_{treatment}_vs_{control}_trust4_merge_tcr_clonality.log"
-    conda: "../../envs/stat_perl_r.yml"
     params:
       meta= config["metasheet"],
       outdir="analysis/trust4/",
@@ -146,7 +142,6 @@ rule merge_bcr_shm:
       "benchmarks/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr_shm.benchmark"
     log:
       "logs/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr_shm.log"
-    conda: "../../envs/stat_perl_r.yml"
     params:
       meta= config["metasheet"],
       outdir="analysis/trust4/",
@@ -170,7 +165,6 @@ rule merge_bcr_infil:
       "benchmarks/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr_shm.benchmark"
     log:
       "logs/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr_shm.log"
-    conda: "../../envs/stat_perl_r.yml"
     params:
       meta= config["metasheet"],
       outdir="analysis/trust4/",
@@ -194,7 +188,6 @@ rule merge_tcr_infil:
       "benchmarks/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr_lib_reads_Infil.benchmark"
     log:
       "logs/trust4/{design}_{treatment}_vs_{control}_trust4_merge_bcr_lib_reads_Infil.log"
-    conda: "../../envs/stat_perl_r.yml"
     params:
       meta= config["metasheet"],
       outdir="analysis/trust4/",
@@ -226,7 +219,6 @@ rule trust4_cohort_plot:
       "logs/trust4/{design}_{treatment}_vs_{control}_trust4_plot.log"
    benchmark:
       "benchmarks/trust4/{design}_{treatment}_vs_{control}_trust4_plot.benchmark"
-   conda: "../../envs/stat_perl_r.yml"
    params:
       Condition = design,
       Treatment = treatment,

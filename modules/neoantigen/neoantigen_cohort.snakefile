@@ -50,6 +50,5 @@ rule arcasHLA_plot:
         design = config["design"],
         outpath = "analysis/neoantigen/{design}_{batch}_",
         path="set +eu;source activate %s" % config['stat_root'],
-    conda: "../../envs/stat_perl_r.yml"
     shell:
         "{params.path}; Rscript src/neoantigen/hla_plot.R --hla {input.res} --meta {params.meta} --expression {input.expr} --design {params.design} --outdir {params.outpath}"

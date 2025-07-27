@@ -31,10 +31,6 @@ foreach my $token( @tokens ) {
 }
 print OFH join(",",@labels) . ')' . "\n";
 print OFH "\n";
-print OFH 'png("' . $$options{png} . '", width = 8, height = 8, unit="in",res=300)' . "\n";
-print OFH 'rc <- cm.colors(ncol(data_matrix))' . "\n";
-print OFH 'junk <- dev.off()' . "\n";
-print OFH "\n";
 print OFH 'png("' . $$options{curves_png} . '", width = 8, height = 8, unit="in",res=300)' . "\n";
 print OFH 'x=1:100' . "\n";
 print OFH 'icolor = colorRampPalette(c("#7fc97f","#beaed4","#fdc086","#ffff99","#386cb0","#f0027f"))(' . scalar @labels .')' . "\n";
